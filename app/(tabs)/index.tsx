@@ -1,15 +1,15 @@
-import { useEffect } from 'react';
+import AppButton from '@/components/AppButton';
+import Constants from 'expo-constants';
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
+import { useEffect, useRef } from 'react';
 import {
   Platform,
   StyleSheet,
   View
 } from 'react-native';
-import * as Device from 'expo-device';
-import * as Notifications from 'expo-notifications';
-import Constants from 'expo-constants';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
-import AppButton from '@/components/AppButton';
 
 
 Notifications.setNotificationHandler({
@@ -22,6 +22,8 @@ Notifications.setNotificationHandler({
 });
 
 export default function HomeScreen() {
+  const hasTriggeredOnLoad = useRef(false); // prevents multiple triggers
+  const devicePushToken = useRef<string | undefined>(undefined);
 
   useEffect(() => {
     registerForPushNotificationsAsync();
@@ -48,12 +50,26 @@ export default function HomeScreen() {
       <WebView
         source={{ uri: "https://expo.dev" }}
         style={styles.webview}
+        onLoadEnd={async () => {
+          if (!hasTriggeredOnLoad.current) {
+            await schedulePushNotification(
+              1,
+              "👋 Welcome!",
+              "Thanks for exploring the WebView screen. Don’t forget to check the Video Player screen!"
+            );
+            hasTriggeredOnLoad.current = true;
+          }
+        }}
       />
       <View style={styles.bottomContainer}>
         <AppButton
-          title='Schedule a notification after 2sec'
+          title='Schedule goal notification'
           onPress={async () => {
-            await schedulePushNotification();
+            await schedulePushNotification(
+              3,
+              "🎉 Congratulations!",
+              "You’ve successfully achieved your goal. Keep going 🚀"
+            );
           }}
         />
       </View>
@@ -77,18 +93,29 @@ const styles = StyleSheet.create({
   }
 });
 
-async function schedulePushNotification() {
+async function schedulePushNotification(time: number, title: string, body: string) {
   await Notifications.scheduleNotificationAsync({
     content: {
-      title: "Hello 👋 Sopan, Welcome!",
-      body: 'Thanks for exploring the WebView screen. Don’t forget to check the Video Player screen!',
-      data: { dataString: 'goes here', test: { test1: 'more data' } },
+      title,
+      body,
+      data: { customData: 'any extra payload here' },
     },
     trigger: {
       type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
-      seconds: 2,
+      seconds: time
     },
   });
+  // await Notifications.scheduleNotificationAsync({
+  //   content: {
+  //     title: "Hello 👋 Sopan, Welcome!",
+  //     body: 'Thanks for exploring the WebView screen. Don’t forget to check the Video Player screen!',
+  //     data: { data: 'goes here', test: { test1: 'more data' } },
+  //   },
+  //   trigger: {
+  //     type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+  //     seconds: time,
+  //   },
+  // });
 }
 
 async function registerForPushNotificationsAsync() {

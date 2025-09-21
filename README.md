@@ -1,4 +1,18 @@
-# React Native (Expo) Assignment: WebView + Notifications + Video Player [DEMO](https://drive.google.com/file/d/15Ehek2xPdnFSlBoZnt76NVPVp1-o71Jc/view?usp=drive_link)
+# React Native (Expo) Assignment: WebView + Notifications + Video Player 
+
+## [DEMO](https://drive.google.com/file/d/15Ehek2xPdnFSlBoZnt76NVPVp1-o71Jc/view?usp=drive_link)
+
+<img src="./public/Webview01.jpg" alt="WebView Screenshot" height="500" />
+<img src="./public/WelcomNotif02.jpg" alt="WebView Screenshot" height="500" />
+<img src="./public/ScheduleNotif03.jpg" alt="WebView Screenshot" height="500" />
+
+<img src="./public/Player04.jpg" alt="WebView Screenshot" height="500" />
+<img src="./public/Player05.jpg" alt="WebView Screenshot" height="500" />
+
+
+<img src="./public/Feed06.jpg" alt="WebView Screenshot" height="500" />
+<img src="./public/Feed07.jpg" alt="WebView Screenshot" height="500" />
+
 
 ## ⚙️ Implementation Choices
 
