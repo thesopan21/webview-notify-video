@@ -1,6 +1,6 @@
 # React Native (Expo) Assignment: WebView + Notifications + Video Player 
 
-## [DEMO](https://drive.google.com/file/d/15Ehek2xPdnFSlBoZnt76NVPVp1-o71Jc/view?usp=drive_link)
+## [App demo](https://drive.google.com/file/d/1r3R4YyHIAvLjmzTra--DleOXGmpm_3CV/view?usp=drivesdk)
 
 <div>
 <img src="./public/Webview01.jpg" alt="WebView Screenshot" height="500" />
