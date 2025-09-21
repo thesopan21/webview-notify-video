@@ -18,8 +18,14 @@
 <img src="./public/Feed07.jpg" alt="WebView Screenshot" height="500" />
 </div>
 
+## Project Setup Guide
 
-## ⚙️ Implementation Choices
+1. clone the `https://github.com/thesopan21/webview-notify-video.git`
+2. navigate to `cd webview-notify-video` directory
+3. make sure `node_module` must be present in you project dir if not `npm i`
+4. run the dev server by executing `npx expo start`
+
+## Implementation Choices
 
 ### 1. WebView
 
